@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: file:/app/prisma/dev.db
+      JWT_SECRET: 00ea1da4192a2030f9ae023de3b3143ed647bbab
+      JWT_EXPIRE: 1h
+      PORT: 3003
+    volumes:
+      - sqlite_data:/app/prisma
+volumes:
+  sqlite_data:
+
+networks:
+  app-network:
+    external: true
