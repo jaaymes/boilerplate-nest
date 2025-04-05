@@ -10,7 +10,7 @@ services:
       NODE_ENV: production
       DATABASE_URL: postgresql://neondb_owner:npg_WlAG2Y6hDMfd@ep-super-sun-a5dg683i-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require
       JWT_SECRET: 00ea1da4192a2030f9ae023de3b3143ed647bbab
-      JWT_EXPIRE: 1h
+      JWT_EXPIRE: 24h
       PORT: 3003
     volumes:
       - postgres_data:/app/prisma
