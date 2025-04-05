@@ -22,7 +22,7 @@ if ! command -v docker &> /dev/null; then
 fi
 
 # Verificar se o Docker Compose está instalado
-if ! command -v docker compose &> /dev/null; then
+if ! command -v docker-compose &> /dev/null; then
     echo "❌ Docker Compose não está instalado. Por favor, instale o Docker Compose e tente novamente."
     exit 1
 fi
@@ -32,7 +32,7 @@ echo "🧹 Limpando caches de build anteriores..."
 docker builder prune -f
 
 # Construir e iniciar os containers
-docker compose -f docker-compose.prod.yml up -d --build
+docker-compose -f docker-compose.prod.yml up -d --build
 
 # Verificar se os containers estão rodando
 if [ $? -eq 0 ]; then
@@ -48,7 +48,7 @@ sleep 5
 
 # Executar migrações do Prisma
 echo "🔄 Executando migrações do Prisma..."
-docker compose -f docker-compose.prod.yml exec api npx prisma migrate deploy
+docker-compose -f docker-compose.prod.yml exec api npx prisma migrate deploy
 
 echo "✅ Implantação concluída com sucesso!"
 echo "🌐 A API está disponível em: http://localhost:3003"
