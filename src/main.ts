@@ -15,7 +15,12 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, documentFactory);
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:5173', '*'],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://jctechsolution.zapto.org',
+      'https://tangerine-sunburst-77f589.netlify.app',
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
