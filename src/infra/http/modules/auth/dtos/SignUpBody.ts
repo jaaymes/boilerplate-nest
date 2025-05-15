@@ -26,4 +26,7 @@ export class SignUpBody {
   @IsString()
   @IsNotEmpty({ message: 'Nome é obrigatório' })
   name: string;
+
+  @IsString()
+  avatar?: string;
 }

@@ -4,12 +4,19 @@ import { hashPassword } from '@/utils/crypto';
 import { Injectable } from '@nestjs/common';
 import { UserAlreadyException } from '../../exceptions/UserAlreadyException';
 
+type SignUpUseCaseRequest = {
+  email: string;
+  password: string;
+  name: string;
+  avatar?: string;
+};
+
 @Injectable()
 export class SignUpUseCase {
   constructor(private userRepository: UserRepository) {}
 
-  async execute(data: { email: string; password: string; name: string }) {
-    const { email, password, name } = data;
+  async execute(data: SignUpUseCaseRequest) {
+    const { email, password, name, avatar } = data;
 
     const user = await this.userRepository.findByEmail(email);
 
@@ -23,6 +30,7 @@ export class SignUpUseCase {
       name,
       email,
       password: hashedPassword,
+      avatar,
     });
 
     await this.userRepository.create(userCreated);

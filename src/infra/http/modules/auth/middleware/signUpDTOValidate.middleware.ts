@@ -9,17 +9,19 @@ type SignUpBodySchema = {
   email: string;
   password: string;
   name: string;
+  avatar?: string;
 };
 
 @Injectable()
 export class SignUpDTOValidadeMiddleware implements NestMiddleware {
-  async use(req: Request, res: Response, next: NextFunction) {
+  async use(req: Request, _: Response, next: NextFunction) {
     const body = req.body as unknown as SignUpBodySchema;
 
     const signUpBody = new SignUpBody();
     signUpBody.email = body.email;
     signUpBody.password = body.password;
     signUpBody.name = body.name;
+    signUpBody.avatar = body.avatar;
 
     const validations = await validate(signUpBody);
 

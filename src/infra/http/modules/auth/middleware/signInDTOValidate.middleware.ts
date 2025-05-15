@@ -12,7 +12,7 @@ type SignInBodySchema = {
 
 @Injectable()
 export class SignInDTOValidadeMiddleware implements NestMiddleware {
-  async use(req: Request, res: Response, next: NextFunction) {
+  async use(req: Request, _: Response, next: NextFunction) {
     const body = req.body as unknown as SignInBodySchema;
 
     const signInBody = new SignInBody();

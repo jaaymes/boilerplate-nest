@@ -36,9 +36,14 @@ export class AuthController {
   @HttpCode(HttpStatus.CREATED)
   @Public()
   async signUp(@Body() body: AuthRequestSignUpModel) {
-    const { email, password, name } = body;
+    const { email, password, name, avatar } = body;
 
-    const user = await this.signUpUseCase.execute({ email, password, name });
+    const user = await this.signUpUseCase.execute({
+      email,
+      password,
+      name,
+      avatar,
+    });
 
     return user;
   }
